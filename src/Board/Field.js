@@ -29,11 +29,9 @@ class Field extends Component {
       default:
         return noColor
     }
-    backgroundColor: `rgb(${200-this.props.val*10}, ${this.props.val*20}, ${this.props.val*20})`
   }
 
   render() {
-    const color = ""
     const style = {
       backgroundColor: this.getColor()
     }

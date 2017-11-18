@@ -5,6 +5,7 @@ import "./Board.css"
 import Field from './Field'
 
 import updateBoard from './update-board-gof'
+import setBoardRandom from './set-board-random'
 
 class Board extends Component {
   constructor() {
@@ -12,17 +13,8 @@ class Board extends Component {
     this.click = this.click.bind(this)
     this.update = this.update.bind(this)
 
-    const size = 50
+    const fields = setBoardRandom(40, 60)
 
-    const fields = [];
-    for (let r = 0; r < size; r++) {
-      let row = []
-      for (let r = 0; r < size; r++) {
-        let random = Math.floor(Math.random() * 2)
-        row.push(random);
-      }
-      fields.push(row);
-    }
     this.state = {
       fields: fields
     }

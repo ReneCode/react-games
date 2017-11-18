@@ -2,16 +2,6 @@
   game of life rules
 */
 
-const updateBoardRandom = (fields) => {
-  const maxVal = 5
-  fields.forEach(row => {
-    for (let c = 0; c < row.length; c++) {
-      row[c] = Math.floor(Math.random() * maxVal);
-    }
-  })
-}
-
-
 const updateBoard = (fields) => {
   const maxRow = fields.length - 1;
   const maxCol = fields[0].length - 1;
