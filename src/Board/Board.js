@@ -4,24 +4,30 @@ import "./Board.css"
 
 import Field from './Field'
 
+import updateBoard from './update-board-gof'
+
 class Board extends Component {
   constructor() {
     super()
     this.click = this.click.bind(this)
     this.update = this.update.bind(this)
 
+    const size = 50
+
+    const fields = [];
+    for (let r = 0; r < size; r++) {
+      let row = []
+      for (let r = 0; r < size; r++) {
+        let random = Math.floor(Math.random() * 2)
+        row.push(random);
+      }
+      fields.push(row);
+    }
     this.state = {
-      fields: [
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [1, 0, 0, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [2, 0, 0, 0, 0, 0]
-      ]
+      fields: fields
     }
 
-    this.interval = setInterval(this.update, 1000)
+    this.interval = setInterval(this.update, 200)
   }
 
   update() {
@@ -31,12 +37,8 @@ class Board extends Component {
         ...this.state
       };
 
-      newState.fields.forEach(row => {
-        for (let c = 0; c < row.length; c++) {
-          row[c] = Math.floor(Math.random() * 10);
-        }
-      })
-      console.log(newState)
+      updateBoard(this.state.fields)
+
       this.setState(newState)
 
     }
@@ -56,16 +58,13 @@ class Board extends Component {
     this.setState(newState)
   }
 
-
-
-
   render() {
     return (
       <div>
         <h2>playground</h2>
         { this.state.fields.map((cells, r) => {
             const row = cells.map((cell, c) => {
-              return <Field key={ c } click={ this.click } row={ r } column={ c } text={ cell } />
+              return <Field key={ c } click={ this.click } r={ r } c={ c } val={ cell } />
             })
             return <div key={ r } className="board-row">
                      { row }
