@@ -2,7 +2,7 @@
   game of life rules
 */
 
-const updateBoard = (fields) => {
+const updateBoard = ({fields}) => {
   const maxRow = fields.length - 1;
   const maxCol = fields[0].length - 1;
 
@@ -44,7 +44,6 @@ const updateBoard = (fields) => {
       fields[r][c] = newVal
     }
   }
-  return fields;
 }
 
 

@@ -12,7 +12,9 @@ describe('gof - board', () => {
       [0, 1, 0],
       [0, 0, 0],
     ]
-    updateBoard(fields);
+    updateBoard({
+      fields
+    });
     fields[1][1].should.be.equal(0)
   });
 
@@ -22,7 +24,9 @@ describe('gof - board', () => {
       [0, 1, 0],
       [0, 0, 0],
     ]
-    updateBoard(fields);
+    updateBoard({
+      fields
+    });
     fields[1][1].should.be.equal(1)
   });
 
@@ -32,7 +36,9 @@ describe('gof - board', () => {
       [0, 0, 0],
       [0, 0, 0],
     ]
-    updateBoard(fields);
+    updateBoard({
+      fields
+    });
     fields[1][1].should.be.equal(1)
   });
 
@@ -42,7 +48,9 @@ describe('gof - board', () => {
       [0, 1, 1],
       [0, 1, 0],
     ]
-    updateBoard(fields);
+    updateBoard({
+      fields
+    });
     fields[1][1].should.be.equal(0)
   });
 })
