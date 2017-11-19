@@ -31,6 +31,8 @@ const direction = {
         return direction.up;
       case direction.up:
         return direction.left;
+      default:
+        throw new Error("bad direction:", dir)
     }
   }
 

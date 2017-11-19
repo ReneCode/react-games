@@ -6,11 +6,6 @@ import './Field.css'
 class Field extends Component {
   constructor(props) {
     super(props);
-    this.click = this.click.bind(this)
-  }
-
-  click() {
-    this.props.click(this.props.r, this.props.c)
   }
 
   getColor() {
@@ -36,8 +31,7 @@ class Field extends Component {
       backgroundColor: this.getColor()
     }
     return (
-      <div className="board-field" onClick={ this.click } style={ style }>
-        { /* { this.props.val } */ }
+      <div className="board-field" style={ style }>
       </div>
     )
   }
@@ -45,8 +39,6 @@ class Field extends Component {
 
 Field.propTypes = {
   val: PropTypes.number.isRequired,
-  c: PropTypes.number.isRequired,
-  r: PropTypes.number.isRequired,
 }
 
 

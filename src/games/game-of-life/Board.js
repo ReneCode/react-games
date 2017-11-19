@@ -5,38 +5,22 @@ import "./Board.css"
 import Field from './Field'
 
 import updateBoard from './update-board-gof'
-import setBoardRandom from './set-board-random'
-import direction from './direction'
+import setBoard from '../common/set-board'
 
 class Board extends Component {
   constructor() {
     super()
     this.click = this.click.bind(this)
     this.update = this.update.bind(this)
-    // this.keyDown = this.keyDown(this)
 
-
-    const fields = setBoardRandom(40, 20)
+    const fields = setBoard.setRandom(40, 40)
 
     this.lastKey = null
     this.state = {
-      fields: fields,
-      direction: direction.up
+      fields: fields
     }
 
-    this.interval = setInterval(this.update, 1000)
-  }
-
-  componentWillMount() {
-    document.addEventListener('keydown', this.keyDown.bind(this), false)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.keyDown.bind(this), false)
-  }
-
-  keyDown(e) {
-    this.lastKey = e.code
+    this.interval = setInterval(this.update, 500)
   }
 
   update() {
@@ -45,20 +29,6 @@ class Board extends Component {
       let newState = {
         ...this.state,
       };
-
-      switch (this.lastKey) {
-        case "ArrowLeft":
-          newState.direction = direction.turnLeft(newState.direction);
-          break;
-        case 'ArrowRight':
-          newState.direction = direction.turnRight(newState.direction);
-          break;
-        default:
-      // leave direction
-      }
-      // clear key - continue on current direction
-      // if no key will be pressed
-      this.lastKey = null;
 
       updateBoard(newState)
 
