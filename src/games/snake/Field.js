@@ -4,9 +4,6 @@ import PropTypes from 'prop-types'
 import './Field.css'
 
 class Field extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   getColor() {
     const noColor = "#f6f6f6"

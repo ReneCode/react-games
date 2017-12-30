@@ -11,7 +11,6 @@ const updateBoard = (state) => {
   }
 
   const createNewFruit = () => {
-
     return [
       Math.floor(Math.random() * state.maxRows),
       Math.floor(Math.random() * state.maxCols)
@@ -39,6 +38,8 @@ const updateBoard = (state) => {
     case direction.left:
       newHead[1]--
       break;
+    default:
+      throw new Error('bad direction:' + state.direction)
   }
   if (newHead[0] < 0 || newHead[0] >= state.maxRows ||
     newHead[1] < 0 || newHead[1] >= state.maxCols) {
@@ -49,7 +50,7 @@ const updateBoard = (state) => {
 
     if (state.fruit && samePos(state.fruit, newHead)) {
       // eat the fruit
-      state.snake.length++;
+      state.snakeMaxLength++;
       state.fruit = null;
     } else {
       if (!state.fruit) {

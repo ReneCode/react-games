@@ -12,17 +12,26 @@ class Board extends Component {
     super()
     this.click = this.click.bind(this)
     this.update = this.update.bind(this)
+    this.start = this.start.bind(this)
 
     this.lastKey = null
     this.state = {
       maxRows: 30,
       maxCols: 30,
-      snake: [[10, 10]],
+      snake: [[15, 15]],
       snakeMaxLength: 5,
       direction: direction.up
     }
+    this.initalState = this.state;
+  }
 
-    this.interval = setInterval(this.update, 500)
+  start() {
+    clearInterval(this.interval);
+
+    this.setState(this.initalState);
+
+    this.interval = setInterval(this.update, 200)
+
   }
 
   componentWillMount() {
@@ -30,6 +39,7 @@ class Board extends Component {
   }
 
   componentWillUnmount() {
+    clearInterval(this.interval);
     document.removeEventListener('keydown', this.keyDown.bind(this), false)
   }
 
@@ -56,10 +66,14 @@ class Board extends Component {
     // clear key - continue on current direction
     // if no key will be pressed
     this.lastKey = null;
-    console.log("x")
     updateBoard(newState)
 
+    console.log(newState.snakeMaxLength)
+
     this.setState(newState)
+    if (newState.snakeDead) {
+      clearInterval(this.interval);
+    }
 
   }
 
@@ -121,7 +135,11 @@ class Board extends Component {
     }
     return (
       <div>
-        { rows }
+        <h3>Score: { this.state.snakeMaxLength }</h3>
+        <div>
+          { rows }
+        </div>
+        <button onClick={ this.start }>Start (use cursor left/right)</button>
       </div>
     )
   }

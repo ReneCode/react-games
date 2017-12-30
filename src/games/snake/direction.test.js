@@ -1,27 +1,24 @@
 
-should = require('chai').should()
-
 import direction from './direction'
-
 
 describe('direction', () => {
 
   describe('turn right', () => {
     it('d -> l', () => {
       const d = direction.turnRight(direction.down);
-      d.should.be.equal(direction.left)
+      expect(d).toBe(direction.left)
     });
     it('l -> u', () => {
       const d = direction.turnRight(direction.left);
-      d.should.be.equal(direction.up)
+      expect(d).toBe(direction.up)
     });
     it('u -> r', () => {
       const d = direction.turnRight(direction.up);
-      d.should.be.equal(direction.right)
+      expect(d).toBe(direction.right)
     });
     it('r -> d', () => {
       const d = direction.turnRight(direction.right);
-      d.should.be.equal(direction.down)
+      expect(d).toBe(direction.down)
     });
 
   })
