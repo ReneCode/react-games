@@ -27,8 +27,8 @@ jobs:
           - v1-dependencies-
 
       - run: 
-        name: install
-        command: yarn install
+          name: install
+          command: yarn install
 
       - save_cache:
           paths:
@@ -37,11 +37,11 @@ jobs:
         
       # run tests!
       - run: 
-        name: tests & coverage
-        command: yarn test --coverage
+          name: tests & coverage
+          command: yarn test --coverage
 
       # build
       - run: 
-        name: build
-        command: yarn build
+          name: build
+          command: yarn build
       
