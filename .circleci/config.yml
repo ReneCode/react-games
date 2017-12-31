@@ -45,3 +45,7 @@ jobs:
           name: build
           command: yarn build
       
+deployment:
+  production:
+    branch: master
+    

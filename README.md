@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/ReneCode/react-games.svg?style=svg)](https://circleci.com/gh/ReneCode/react-games)
 
 # React-games
 
