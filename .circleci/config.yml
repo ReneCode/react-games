@@ -40,12 +40,19 @@ jobs:
           name: tests & coverage
           command: yarn test --coverage
 
+      - store_test_results:
+          path: /tmp/test-reports
+
       # build
       - run: 
           name: build
           command: yarn build
       
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: build
+
+
 deployment:
   production:
     branch: master
-    
