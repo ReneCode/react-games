@@ -2,7 +2,7 @@
 import React , { Component } from 'react'
 import './DoodleJump.css'
 
-import Stair from './Stair'
+// import Stair from './Stair'
 import Doodle from './Doodle'
 
 class DoodleJump extends Component {
