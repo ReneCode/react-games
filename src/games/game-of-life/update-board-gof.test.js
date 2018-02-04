@@ -1,8 +1,5 @@
 
-should = require('chai').should()
-
 import updateBoard from './update-board-gof'
-
 
 describe('gof - board', () => {
 
@@ -15,7 +12,7 @@ describe('gof - board', () => {
     updateBoard({
       fields
     });
-    fields[1][1].should.be.equal(0)
+    expect(fields[1][1]).toBe(0)
   });
 
   it('should alive', () => {
@@ -27,7 +24,7 @@ describe('gof - board', () => {
     updateBoard({
       fields
     });
-    fields[1][1].should.be.equal(1)
+    expect(fields[1][1]).toBe(1)
   });
 
   it('should born new cell', () => {
@@ -39,7 +36,7 @@ describe('gof - board', () => {
     updateBoard({
       fields
     });
-    fields[1][1].should.be.equal(1)
+    expect(fields[1][1]).toBe(1)
   });
 
   it('should die - overcrouded', () => {
@@ -51,6 +48,6 @@ describe('gof - board', () => {
     updateBoard({
       fields
     });
-    fields[1][1].should.be.equal(0)
+    expect(fields[1][1]).toBe(0)
   });
 })

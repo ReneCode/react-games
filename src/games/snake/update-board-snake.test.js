@@ -1,11 +1,6 @@
 
-
-const should = require('chai').should()
-
-
 import updateBoard from './update-board-snake'
 import direction from './direction'
-
 
 describe('snake - board', () => {
 
@@ -19,8 +14,8 @@ describe('snake - board', () => {
         direction: direction.up
       }
       updateBoard(state);
-      state.snake[0].should.be.deep.equal([4, 5])
-      state.snake[1].should.be.deep.equal([5, 5])
+      expect(state.snake[0]).toEqual([4, 5])
+      expect(state.snake[1]).toEqual([5, 5])
     });
 
     it('snake should expand right', () => {
@@ -31,8 +26,8 @@ describe('snake - board', () => {
         direction: direction.right
       }
       updateBoard(state);
-      state.snake[0].should.be.deep.equal([5, 6])
-      state.snake[1].should.be.deep.equal([5, 5])
+      expect(state.snake[0]).toEqual([5, 6])
+      expect(state.snake[1]).toEqual([5, 5])
     });
 
     it('snake should expand down', () => {
@@ -43,8 +38,8 @@ describe('snake - board', () => {
         direction: direction.down
       }
       updateBoard(state);
-      state.snake[0].should.be.deep.equal([6, 5])
-      state.snake[1].should.be.deep.equal([5, 5])
+      expect(state.snake[0]).toEqual([6, 5])
+      expect(state.snake[1]).toEqual([5, 5])
     });
 
     it('snake should expand left', () => {
@@ -55,8 +50,8 @@ describe('snake - board', () => {
         direction: direction.left
       }
       updateBoard(state);
-      state.snake[0].should.be.deep.equal([5, 4])
-      state.snake[1].should.be.deep.equal([5, 5])
+      expect(state.snake[0]).toEqual([5, 4])
+      expect(state.snake[1]).toEqual([5, 5])
     });
   })
 
@@ -71,10 +66,10 @@ describe('snake - board', () => {
         direction: direction.up
       }
       updateBoard(state);
-      state.snake.length.should.be.equal(3)
-      state.snake[0].should.be.deep.equal([4, 5])
-      state.snake[1].should.be.deep.equal([5, 5])
-      state.snake[2].should.be.deep.equal([6, 5])
+      expect(state.snake.length).toBe(3)
+      expect(state.snake[0]).toEqual([4, 5])
+      expect(state.snake[1]).toEqual([5, 5])
+      expect(state.snake[2]).toEqual([6, 5])
     });
   })
 
@@ -88,8 +83,8 @@ describe('snake - board', () => {
         direction: direction.up
       }
       updateBoard(state);
-      state.snake.length.should.be.equal(0)
-      state.snakeDead.should.be.true
+      expect(state.snake.length).toBe(0)
+      expect(state.snakeDead).toBe(true)
     });
 
     it('direction right', () => {
@@ -101,8 +96,8 @@ describe('snake - board', () => {
         direction: direction.right
       }
       updateBoard(state);
-      state.snake.length.should.be.equal(0)
-      state.snakeDead.should.be.true
+      expect(state.snake.length).toBe(0)
+      expect(state.snakeDead).toBe(true)
     });
   })
 
@@ -117,8 +112,8 @@ describe('snake - board', () => {
         direction: direction.up
       }
       updateBoard(state);
-      state.snake.length.should.be.equal(3)
-      should.equal(state.fruit, null)
+      expect(state.snake.length).toBe(3)
+      expect(state.fruit).toBe(null)
     });
   })
 
@@ -134,7 +129,7 @@ describe('snake - board', () => {
         direction: direction.up
       }
       updateBoard(state);
-      should.not.equal(state.fruit, null)
+      expect(state.fruit).not.toBe(null)
     });
   })
 })
