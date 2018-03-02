@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
+    <div>
     <ul>
       <li>
         <Link to="/">Home</Link>
@@ -15,10 +16,14 @@ const Home = () => {
         <Link to="/gameoflife">Game of life</Link>
       </li>
       <li>
+        <Link to="/aliens">Aliens</Link>
+      </li>
+      <li>
         <Link to="/doodlejump">Doodle Jump</Link>
       </li>
       
     </ul>
+    </div>
   )
 }
 
