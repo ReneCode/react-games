@@ -14,7 +14,7 @@ class Board extends Component {
     this.update = this.update.bind(this)
 
     const fields = setBoard.setRandom(40, 40)
-
+    fields[0][0] = 0;
     this.lastKey = null
     this.state = {
       fields: fields
