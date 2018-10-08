@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import Graph from "./graph";
 
 class RandomGraph extends Component {
+  running = false;
   state = {
-    running: false,
     width: 600,
     height: 600
   };
@@ -12,21 +12,19 @@ class RandomGraph extends Component {
   componentDidMount() {
     const context = this.canvas.getContext("2d");
     this.setState({
-      context,
-      running: true
+      context
     });
 
     this.graph = new Graph(this.state.width, this.state.height);
-
+    this.running = true;
     requestAnimationFrame(() => {
       this.update();
     });
   }
 
   componentWillUnmount() {
-    this.setState({
-      running: false
-    });
+    console.log("will unmount");
+    this.running = false;
   }
 
   update = () => {
@@ -37,8 +35,8 @@ class RandomGraph extends Component {
     context.fillRect(0, 0, this.state.width, this.state.height);
 
     this.graph.render(context);
-
-    if (this.state.running) {
+    this.graph.update();
+    if (this.running) {
       requestAnimationFrame(() => {
         this.update();
       });
