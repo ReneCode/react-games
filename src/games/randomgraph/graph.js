@@ -12,7 +12,7 @@ class Graph {
   }
 
   initPoints() {
-    const maxPoints = 100;
+    const maxPoints = 30;
     this.points = Array.from(new Array(maxPoints)).map(p => this.newPoint());
   }
 
@@ -34,7 +34,7 @@ class Graph {
     }
   }
 
-  pointDistanceLevel(p1, p2) {
+  pointDistanceLevel = (p1, p2) => {
     const distances = [, 20, 50, 80]; // start at index 1
     const dx = p1.x - p2.x;
     const dy = p1.y - p2.y;
@@ -46,7 +46,22 @@ class Graph {
       }
     }
     return 0;
-  }
+  };
+
+  doGravitation = (p1, p2, level) => {
+    if (level == 0) {
+      return;
+    }
+    let dx = p2.x - p1.x;
+    let dy = p2.y - p1.y;
+    const squareDistance = dx * dx + dy * dy;
+    dx = ((1 / level) * dx) / squareDistance;
+    dy = ((1 / level) * dy) / squareDistance;
+    p1.dx += dx;
+    p1.dy += dy;
+    p2.dx -= dx;
+    p2.dy -= dy;
+  };
 
   update() {
     this.points.forEach(p => {
@@ -65,6 +80,7 @@ class Graph {
       this.points.forEach(p2 => {
         if (p != p2) {
           const level = this.pointDistanceLevel(p, p2);
+          this.doGravitation(p, p2, level);
           if (level > 0) {
             context.lineWidth = 1; // 4 - level;
             context.strokeStyle = `rgb(200, 200, 200, ${1 - level / 3})`;

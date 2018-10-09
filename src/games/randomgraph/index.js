@@ -4,6 +4,7 @@ import Graph from "./graph";
 
 class RandomGraph extends Component {
   running = false;
+  frame = 0;
   state = {
     width: 600,
     height: 600
@@ -28,14 +29,18 @@ class RandomGraph extends Component {
   }
 
   update = () => {
-    const context = this.state.context;
+    this.frame--;
+    if (this.frame <= 0) {
+      this.frame = 3;
 
-    // background color
-    context.fillStyle = "#333";
-    context.fillRect(0, 0, this.state.width, this.state.height);
+      const context = this.state.context;
 
-    this.graph.render(context);
-    this.graph.update();
+      // background color
+      context.fillStyle = "#333";
+      context.fillRect(0, 0, this.state.width, this.state.height);
+      this.graph.render(context);
+      this.graph.update();
+    }
     if (this.running) {
       requestAnimationFrame(() => {
         this.update();
