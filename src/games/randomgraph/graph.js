@@ -34,16 +34,18 @@ class Graph {
     }
   }
 
-  pointsNear(p1, p2) {
-    const maxDistance = 50;
-    const maxSquareDistance = maxDistance * maxDistance;
+  pointDistanceLevel(p1, p2) {
+    const distances = [, 20, 50, 80]; // start at index 1
     const dx = p1.x - p2.x;
     const dy = p1.y - p2.y;
     const squareDistance = dx * dx + dy * dy;
-    if (squareDistance < maxSquareDistance) {
-      return true;
+    for (let i = 1; i < distances.length; i++) {
+      const d = distances[i];
+      if (squareDistance <= d * d) {
+        return i;
+      }
     }
-    return false;
+    return 0;
   }
 
   update() {
@@ -54,8 +56,6 @@ class Graph {
   }
 
   render(context) {
-    context.strokeStyle = "#aaa";
-    context.lineWidth = 1;
     context.fillStyle = "#eee";
     this.points.forEach(p => {
       context.beginPath();
@@ -64,7 +64,10 @@ class Graph {
       context.closePath();
       this.points.forEach(p2 => {
         if (p != p2) {
-          if (this.pointsNear(p, p2)) {
+          const level = this.pointDistanceLevel(p, p2);
+          if (level > 0) {
+            context.lineWidth = 1; // 4 - level;
+            context.strokeStyle = `rgb(200, 200, 200, ${1 - level / 3})`;
             context.beginPath();
             context.moveTo(p.x, p.y);
             context.lineTo(p2.x, p2.y);

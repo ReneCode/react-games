@@ -1,21 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 
-import reducer from "./reducers"
+import reducer from "./reducers";
 
-import './index.css';
-import App from './App';
+import "./index.css";
+import App from "./App";
 
 const store = createStore(
-  reducer, /* preloadedState, */
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  reducer /* preloadedState, */,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root'));
+  document.getElementById("root")
+);
