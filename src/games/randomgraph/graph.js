@@ -12,7 +12,7 @@ class Graph {
   }
 
   initPoints() {
-    const maxPoints = 30;
+    const maxPoints = 50;
     this.points = Array.from(new Array(maxPoints)).map(p => this.newPoint());
   }
 
@@ -21,21 +21,24 @@ class Graph {
       x: randomInt(this.width),
       y: randomInt(this.height),
       dx: -1 + Math.random() * 2,
-      dy: -1 + Math.random() * 2
+      dy: -1 + Math.random() * 2,
+      r: 3,
+      color: `rgba(${50 + randomInt(200)},${50 + randomInt(200)},${50 +
+        randomInt(200)},0.9)`
     };
   }
 
   rebouncePoint(p) {
     if (p.x < 0 || p.x > this.width) {
-      p.dx = -p.dx;
+      p.dx = -p.dx * 0.8;
     }
     if (p.y < 0 || p.y > this.height) {
-      p.dy = -p.dy;
+      p.dy = -p.dy * 0.8;
     }
   }
 
   pointDistanceLevel = (p1, p2) => {
-    const distances = [, 20, 50, 80]; // start at index 1
+    const distances = [, 20, 40, 60, 80]; // start at index 1
     const dx = p1.x - p2.x;
     const dy = p1.y - p2.y;
     const squareDistance = dx * dx + dy * dy;
@@ -71,10 +74,10 @@ class Graph {
   }
 
   render(context) {
-    context.fillStyle = "#eee";
     this.points.forEach(p => {
       context.beginPath();
-      context.arc(p.x, p.y, 2, 0, 2 * Math.PI);
+      context.fillStyle = p.color;
+      context.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
       context.fill();
       context.closePath();
       this.points.forEach(p2 => {
@@ -83,7 +86,7 @@ class Graph {
           this.doGravitation(p, p2, level);
           if (level > 0) {
             context.lineWidth = 1; // 4 - level;
-            context.strokeStyle = `rgb(200, 200, 200, ${1 - level / 3})`;
+            context.strokeStyle = `rgb(200, 200, 200, ${1 - level / 5})`;
             context.beginPath();
             context.moveTo(p.x, p.y);
             context.lineTo(p2.x, p2.y);

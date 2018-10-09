@@ -31,7 +31,7 @@ class RandomGraph extends Component {
   update = () => {
     this.frame--;
     if (this.frame <= 0) {
-      this.frame = 3;
+      this.frame = 2;
 
       const context = this.state.context;
 
