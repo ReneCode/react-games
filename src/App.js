@@ -7,7 +7,7 @@ import Menu from "./games/Menu";
 import Home from "./games/Home";
 import GameOfLife from "./games/game-of-life/GameOfLife";
 import Snake from "./games/snake/Snake";
-import Aliens from "./games/aliens/components/Aliens";
+// import Aliens from "./games/aliens/components/Aliens";
 import DoodleJump from "./games/doodlejump/DoodleJump";
 import RandomGraph from "./games/randomgraph";
 

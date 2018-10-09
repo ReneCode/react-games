@@ -38,7 +38,7 @@ class Graph {
   }
 
   pointDistanceLevel = (p1, p2) => {
-    const distances = [, 20, 40, 60, 80]; // start at index 1
+    const distances = [undefined, 20, 40, 60, 80]; // start at index 1
     const dx = p1.x - p2.x;
     const dy = p1.y - p2.y;
     const squareDistance = dx * dx + dy * dy;
@@ -52,7 +52,7 @@ class Graph {
   };
 
   doGravitation = (p1, p2, level) => {
-    if (level == 0) {
+    if (level === 0) {
       return;
     }
     let dx = p2.x - p1.x;
@@ -68,7 +68,8 @@ class Graph {
 
   update() {
     this.points.forEach(p => {
-      (p.x += p.dx), (p.y += p.dy);
+      p.x += p.dx;
+      p.y += p.dy;
       this.rebouncePoint(p);
     });
   }
@@ -81,7 +82,7 @@ class Graph {
       context.fill();
       context.closePath();
       this.points.forEach(p2 => {
-        if (p != p2) {
+        if (p !== p2) {
           const level = this.pointDistanceLevel(p, p2);
           this.doGravitation(p, p2, level);
           if (level > 0) {
