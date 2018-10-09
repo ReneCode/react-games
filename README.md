@@ -12,3 +12,5 @@ Steps:
 - try to work TDD. Write some tests with [Jest](https://facebook.github.io/jest/)
 - add [react-router](https://github.com/ReactTraining/react-router)
 - think about more games....
+
+RandomGraph inspired from Kent C Dodds
