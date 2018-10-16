@@ -20,9 +20,9 @@ class Graph {
     return {
       x: randomInt(this.width),
       y: randomInt(this.height),
-      dx: -1 + Math.random() * 2,
-      dy: -1 + Math.random() * 2,
-      r: 3,
+      dx: -0.5 + Math.random() * 1,
+      dy: -0.5 + Math.random() * 1,
+      r: 2 + Math.random() * 8,
       color: `rgba(${50 + randomInt(200)},${50 + randomInt(200)},${50 +
         randomInt(200)},0.9)`
     };
@@ -31,9 +31,19 @@ class Graph {
   rebouncePoint(p) {
     if (p.x < 0 || p.x > this.width) {
       p.dx = -p.dx * 0.8;
+      if (p.x < 0) {
+        p.x = 0;
+      } else {
+        p.x = this.width;
+      }
     }
     if (p.y < 0 || p.y > this.height) {
       p.dy = -p.dy * 0.8;
+      if (p.y < 0) {
+        p.y = 0;
+      } else {
+        p.y = this.height;
+      }
     }
   }
 
@@ -58,8 +68,8 @@ class Graph {
     let dx = p2.x - p1.x;
     let dy = p2.y - p1.y;
     const squareDistance = dx * dx + dy * dy;
-    dx = ((1 / level) * dx) / squareDistance;
-    dy = ((1 / level) * dy) / squareDistance;
+    dx = ((2 / level) * dx) / squareDistance;
+    dy = ((2 / level) * dy) / squareDistance;
     p1.dx += dx;
     p1.dy += dy;
     p2.dx -= dx;
