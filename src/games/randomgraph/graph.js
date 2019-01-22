@@ -12,7 +12,7 @@ class Graph {
   }
 
   initPoints() {
-    const maxPoints = 50;
+    const maxPoints = 30;
     this.points = Array.from(new Array(maxPoints)).map(p => this.newPoint());
   }
 

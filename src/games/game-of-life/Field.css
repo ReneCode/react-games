@@ -1,7 +1,7 @@
 .board-field {
   width: 13px;
   height: 13px;
-  text-align: "enter";
+  text-align: "center";
   border: 0.1px solid white;
   cursor: pointer;
 }
